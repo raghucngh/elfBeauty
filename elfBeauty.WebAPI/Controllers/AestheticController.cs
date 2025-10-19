@@ -41,25 +41,25 @@ namespace elfBeauty.WebAPI.Controllers
             return Ok(aesthetics);
         }
 
-        //[MapToApiVersion("2.0")]
-        //[HttpGet]
-        //[Route("AutocompleteV2")]
-        //public async Task<ActionResult<IEnumerable<string>>> AutocompleteAsnc_Db([FromQuery] string? search)
-        //{
-        //    var aesthetics = await _aestheticSvc.Autocomplete_Db(search);
+        [MapToApiVersion("2.0")]
+        [HttpGet]
+        [Route("AutocompleteV2")]
+        public async Task<ActionResult<IEnumerable<string>>> AutocompleteAsnc_Db([FromQuery] string? search)
+        {
+            var aesthetics = await _aestheticSvc.Autocomplete_DB(search);
 
-        //    return Ok(aesthetics);
-        //}
+            return Ok(aesthetics);
+        }
 
-        //[MapToApiVersion("2.0")]
-        //[HttpGet]
-        //[Route("GetV2")]
-        //public async Task<ActionResult<IEnumerable<Aesthetic>>> GetAestheticsAsync_Db([FromQuery] string? search, [FromQuery] string? sortBy)
-        //{
-        //    var aesthetics = await _aestheticSvc.GetAestheticsAsync_Db(search, sortBy);
+        [MapToApiVersion("2.0")]
+        [HttpGet]
+        [Route("GetV2")]
+        public async Task<ActionResult<IEnumerable<Aesthetic>>> GetAestheticsAsync_Db([FromQuery] string? search, [FromQuery] string? sortBy, [FromQuery] double? latitude = null, [FromQuery] double? longitude = null)
+        {
+            var aesthetics = await _aestheticSvc.GetAestheticsAsync_DB(search: search, sortBy: sortBy, userLat: latitude, userLong: longitude);
 
-        //    return Ok(aesthetics);
-        //}
+            return Ok(aesthetics);
+        }
 
     }
 }

@@ -9,6 +9,13 @@ The solution encapsulates the basic components of a CLEAN architecure. Here is t
 5. PRESENTATION
 
 ***********************
+EF Database Migration
+***********************
+In package manager console, run the following migration scripts to create/update SQLite database:
+PM> Add-Migration InitialCreate
+PM> Update-Database
+
+***********************
 Guidelines
 ***********************
 i		For naming convension, Pascal case is followed for better readability.

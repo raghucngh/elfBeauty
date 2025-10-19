@@ -15,9 +15,13 @@ builder.Services.AddMemoryCache();
 builder.Services.AddDbContext<AestheticDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("BreweryDB")));
 
 // Add component
-builder.Services.AddHttpClient<IAestheticSvc, AestheticSvc>();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IBreweryCacheRepo, BreweryCacheRepo>();
+builder.Services.AddScoped<IBreweryDbRepo, BreweryDbRepo>();
 builder.Services.AddScoped<IAestheticSvc, AestheticSvc>();
+
+// Seed SQLite DB, lazy loading
+builder.Services.AddHostedService<BreweryDbSyncSvc>();
 
 // Add services to the container.
 

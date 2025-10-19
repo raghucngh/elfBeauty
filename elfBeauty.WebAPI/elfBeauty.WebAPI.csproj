@@ -39,4 +39,8 @@
     <ProjectReference Include="..\elfBeauty.Middleware.Monitoring\elfBeauty.Middleware.Monitoring.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
 </Project>
