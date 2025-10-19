@@ -36,7 +36,7 @@ namespace elfBeauty.Core.Repository
                                                                  double? userLat = null, double? userLong = null)
         {
             string? breweryUrl = _config.GetSection(Const.BreweryDSKey).Value;
-            var query1 = (await _httpClient.GetFromJsonAsync<List<Aesthetic>>(breweryUrl))
+            var query1 = (await _httpClient.GetFromJsonAsync<List<AestheticDb>>(breweryUrl))
                             .Select(br =>
                             {
                                 double.TryParse(br.Latitude?.ToString(), out var lat1);

@@ -15,7 +15,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddDbContext<AestheticDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("BreweryDB")));
 
 // Add component
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<IAestheticSvc, AestheticSvc>();
 builder.Services.AddScoped<IBreweryCacheRepo, BreweryCacheRepo>();
 builder.Services.AddScoped<IBreweryDbRepo, BreweryDbRepo>();
 builder.Services.AddScoped<IAestheticSvc, AestheticSvc>();

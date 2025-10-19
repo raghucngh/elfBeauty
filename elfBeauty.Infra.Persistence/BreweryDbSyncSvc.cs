@@ -39,7 +39,7 @@ namespace elfBeauty.Infra.Persistence
                     var responseBody = await response.Content.ReadAsStringAsync();
                     var breweries = JsonSerializer.Deserialize<List<AestheticDb>>(responseBody);
 
-                    //await SeedDatabaseAsync(breweries!);
+                    await SeedDatabaseAsync(breweries!);
 
                     _logger.LogInformation(Const.SyncSuccessLog);
                 }
@@ -63,22 +63,21 @@ namespace elfBeauty.Infra.Persistence
                 var db = scope.ServiceProvider.GetRequiredService<AestheticDbContext>();
                 if (!db.Aesthetics.Any())
                 {
-                    var range = aesthetics.Select(s => new Aesthetic
+                    db.Aesthetics.AddRange(aesthetics.Select(s => new Aesthetic
                     {
                         Name = s.Name,
                         City = s.City,
                         Phone = s.Phone,
                         Latitude = s.Latitude,
                         Longitude = s.Longitude
-                    });
-                    db.Aesthetics.AddRange(range);
+                    }));
                     await db.SaveChangesAsync();
                 }
             }
         }
 
         /// <summary>
-        /// Truncate SQLite database for Aesthetics
+        /// DeleteAll from SQLite database table - Aesthetics
         /// </summary>
         async Task TruncateDatabaseAsync()
         {
