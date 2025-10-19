@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>46a1ad27-caf1-4840-9ecb-e052e238d362</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <Title>elfBeauty Enterprise Solution</Title>
+    <Copyright>© 2025-26</Copyright>
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\ReadMe.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\elfBeauty.Core.Repository\elfBeauty.Core.Repository.csproj" />
+    <ProjectReference Include="..\elfBeauty.Infra.AestheticSvc\elfBeauty.Infra.AestheticSvc.csproj" />
+    <ProjectReference Include="..\elfBeauty.Interfaces\elfBeauty.App.Interfaces.csproj" />
+    <ProjectReference Include="..\elfBeauty.Middleware.Logging\elfBeauty.Middleware.Logging.csproj" />
+    <ProjectReference Include="..\elfBeauty.Middleware.Monitoring\elfBeauty.Middleware.Monitoring.csproj" />
+  </ItemGroup>
+
+</Project>

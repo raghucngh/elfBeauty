@@ -1,0 +1,6 @@
+@elfBeauty.WebAPI_HostAddress = http://localhost:5195
+
+GET {{elfBeauty.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
