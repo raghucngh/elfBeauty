@@ -17,6 +17,8 @@ namespace elfBeauty.WebAPI.Controllers
             _aestheticSvc = aestheticSvc;
         }
 
+        #region V1 - In-Memory Cache
+
         [MapToApiVersion("1.0")]
         [HttpGet]
         [Route("AutocompleteV1")]
@@ -41,12 +43,18 @@ namespace elfBeauty.WebAPI.Controllers
             return Ok(aesthetics);
         }
 
+        #endregion
+
+        #region V2 - SQLite Database
+
         [MapToApiVersion("2.0")]
         [HttpGet]
         [Route("AutocompleteV2")]
         public async Task<ActionResult<IEnumerable<string>>> AutocompleteAsnc_Db([FromQuery] string? search)
         {
             var aesthetics = await _aestheticSvc.Autocomplete_DB(search);
+            if (!aesthetics.Any())
+                return NotFound();
 
             return Ok(aesthetics);
         }
@@ -57,9 +65,12 @@ namespace elfBeauty.WebAPI.Controllers
         public async Task<ActionResult<IEnumerable<Aesthetic>>> GetAestheticsAsync_Db([FromQuery] string? search, [FromQuery] string? sortBy, [FromQuery] double? latitude = null, [FromQuery] double? longitude = null)
         {
             var aesthetics = await _aestheticSvc.GetAestheticsAsync_DB(search: search, sortBy: sortBy, userLat: latitude, userLong: longitude);
+            if (!aesthetics.Any())
+                return NotFound();
 
             return Ok(aesthetics);
         }
 
+        #endregion
     }
 }
